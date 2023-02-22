@@ -1,0 +1,23 @@
+body {
+  font-family: sans-serif;
+}
+
+/* 속성선택자 */
+[id="assignment-instructions"] {
+  color: cadetblue;
+  font-family: sans-serif;
+}
+
+code {
+  font-family: monospace;
+  color: red;
+}
+
+li:nth-child(2) code {
+  color: green;
+}
+
+li + li {
+  background-color: black;
+  color: white;
+}

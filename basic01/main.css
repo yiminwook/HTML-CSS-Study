@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+#product-overview {
+  background: #ff1b68;
+  width: 100%;
+  padding: 10px;
+  height: 528px;
+  border: 5px solid black;
+  margin: 10px;
+  /* width를 컨텐츠 기준으로 총 너비는 528 + 20(padding) + 10(border) = 558 */
+  /* box-sizing: content-box; */
+  /* width에 padding과 boarder를 포함해서 적용 총 너비 528 */
+}
+
+.section-title {
+  color: green;
+}
+
+#product-overview h1 {
+  color: white;
+  font-family: "Anton", "sans-serif";
+}

@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+/* css reset */
+* {
+  /* width: 528px; 일때 */
+  /* box-sizing: content-box; */
+  /* width를 컨텐츠 기준으로 총 너비는 528 + 20(padding) + 10(border) = 558px */
+  /* width에 padding과 boarder를 포함해서 적용 총 너비 528px */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+}
+
+/* header */
+.main-header {
+  width: 100%;
+  background-color: #2ddf5c;
+  padding: 8px 16px;
+}
+
+.main-header > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-header__brand {
+  color: #0e4f1f;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.main-nav {
+  display: inline-block;
+  width: calc(100% - 73px);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.main-nav__items {
+  margin: 0;
+  padding: 0;
+  /* 글머리 기호제거 */
+  list-style: none;
+}
+
+.main-nav__item {
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.main-nav__item > a {
+  text-decoration: none;
+  color: #0e4f1f;
+  font-weight: bold;
+  padding: 4px 0;
+}
+
+.main-nav__item > a:hover,
+.main-nav__item > a:active {
+  color: white;
+  cursor: pointer;
+  border-bottom: 5px solid white;
+}
+
+.main-nav__item--cta a {
+  color: white;
+  background-color: #ff1b68;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.main-nav__item--cta a:hover,
+.main-nav__item--cta a:active {
+  color: #ff1b68;
+  background-color: white;
+  border: none;
+}
+
+/* footer */
+.main-footer {
+  background-color: black;
+  color: white;
+  padding: 32px;
+  margin-top: 48px;
+}
+
+.main-footer__links {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.main-footer__link {
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.main-footer__link a {
+  color: inherit;
+  text-decoration: none;
+}
+.main-footer__link a:hover,
+.main-footer__link a:active {
+  color: #ccc;
+}

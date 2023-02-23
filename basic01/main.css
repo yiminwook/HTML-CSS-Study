@@ -1,91 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
-
-/* css reset */
-* {
-  /* width: 528px; 일때 */
-  /* box-sizing: content-box; */
-  /* width를 컨텐츠 기준으로 총 너비는 528 + 20(padding) + 10(border) = 558px */
-  /* width에 padding과 boarder를 포함해서 적용 총 너비 528px */
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  margin: 0;
-}
-
-/* header */
-.main-header {
-  width: 100%;
-  background-color: #2ddf5c;
-  padding: 8px 16px;
-}
-
-.main-header > div {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.main-header__brand {
-  color: #0e4f1f;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 22px;
-}
-
-.main-nav {
-  display: inline-block;
-  width: calc(100% - 73px);
-  text-align: right;
-  vertical-align: middle;
-}
-
-.main-nav__items {
-  margin: 0;
-  padding: 0;
-  /* 글머리 기호제거 */
-  list-style: none;
-}
-
-.main-nav__item {
-  display: inline-block;
-  margin: 0 16px;
-}
-
-.main-nav__item > a {
-  text-decoration: none;
-  color: #0e4f1f;
-  font-weight: bold;
-  padding: 4px 0;
-}
-
-.main-nav__item > a:hover,
-.main-nav__item > a:active {
-  color: white;
-  cursor: pointer;
-  border-bottom: 5px solid white;
-}
-
-.main-nav__item--cta a {
-  color: white;
-  background-color: #ff1b68;
-  padding: 8px 16px;
-  border-radius: 8px;
-}
-.main-nav__item--cta a:hover,
-.main-nav__item--cta a:active {
-  color: #ff1b68;
-  background-color: white;
-  border: none;
-}
-
 /* main */
 #product-overview {
   width: 100%;
   padding: 10px;
   height: 528px;
-  background: url("freedom.jpg");
+  background: url("./public/freedom.jpg");
 }
 
 #product-overview h1 {
@@ -99,16 +17,22 @@ body {
 }
 
 /* plan */
+.plan-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
 .plan {
-  display: inline-block;
   width: 30%;
+  min-width: 200px;
   padding: 0 16px;
   min-height: 400px;
   margin: 8px;
   background-color: #d6ffdc;
-  text-align: center;
-  vertical-align: middle;
   position: relative;
+  text-align: center;
 }
 
 .plan__title {
@@ -149,6 +73,10 @@ body {
   padding: 8px;
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: -50px;
+  left: 10px;
+  right: 10px;
 }
 
 .button {
@@ -162,8 +90,9 @@ body {
   border-radius: 8px;
   cursor: pointer;
   position: absolute;
-  left: 25%;
-  bottom: 30px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
 }
 
 .button:hover,
@@ -180,7 +109,7 @@ body {
 /* key */
 #key-features {
   background-color: #ff1b68;
-  margin-top: 80px;
+  margin-top: 48px;
   padding: 16px;
 }
 
@@ -216,33 +145,4 @@ body {
   font-weight: bold;
   color: white;
   font-size: 20px;
-}
-
-/* footer */
-.main-footer {
-  background-color: black;
-  color: white;
-  padding: 32px;
-  margin-top: 48px;
-}
-
-.main-footer__links {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  list-style: none;
-}
-
-.main-footer__link {
-  display: inline-block;
-  margin: 0 16px;
-}
-
-.main-footer__link a {
-  color: inherit;
-  text-decoration: none;
-}
-.main-footer__link a:hover,
-.main-footer__link a:active {
-  color: #ccc;
 }

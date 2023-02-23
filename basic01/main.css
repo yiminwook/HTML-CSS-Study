@@ -1,7 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
+/* css reset */
 * {
+  /* width: 528px; 일때 */
+  /* box-sizing: content-box; */
+  /* width를 컨텐츠 기준으로 총 너비는 528 + 20(padding) + 10(border) = 558px */
+  /* width에 padding과 boarder를 포함해서 적용 총 너비 528px */
   box-sizing: border-box;
 }
 
@@ -10,23 +15,202 @@ body {
   margin: 0;
 }
 
+/* header */
+.main-header {
+  width: 100%;
+  background-color: #2ddf5c;
+  padding: 8px 16px;
+}
+
+.main-header > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-header__brand {
+  color: #0e4f1f;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.main-nav {
+  display: inline-block;
+  width: calc(100% - 73px);
+  text-align: right;
+  vertical-align: middle;
+}
+
+.main-nav__items {
+  margin: 0;
+  padding: 0;
+  /* 글머리 기호제거 */
+  list-style: none;
+}
+
+.main-nav__item {
+  display: inline-block;
+  margin: 0 16px;
+}
+
+.main-nav__item > a {
+  text-decoration: none;
+  color: #0e4f1f;
+  font-weight: bold;
+  padding: 4px 0;
+}
+
+.main-nav__item > a:hover,
+.main-nav__item > a:active {
+  color: white;
+  cursor: pointer;
+  border-bottom: 5px solid white;
+}
+
+.main-nav__item--cta a {
+  color: white;
+  background-color: #ff1b68;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+.main-nav__item--cta a:hover,
+.main-nav__item--cta a:active {
+  color: #ff1b68;
+  background-color: white;
+  border: none;
+}
+
+/* main */
 #product-overview {
-  background: #ff1b68;
   width: 100%;
   padding: 10px;
   height: 528px;
-  border: 5px solid black;
-  margin: 10px;
-  /* width를 컨텐츠 기준으로 총 너비는 528 + 20(padding) + 10(border) = 558 */
-  /* box-sizing: content-box; */
-  /* width에 padding과 boarder를 포함해서 적용 총 너비 528 */
-}
-
-.section-title {
-  color: green;
+  background: url("freedom.jpg");
 }
 
 #product-overview h1 {
   color: white;
   font-family: "Anton", "sans-serif";
+}
+
+.section-title {
+  color: #2ddf5c;
+  text-align: center;
+}
+
+/* article */
+.plan {
+  display: inline-block;
+  padding: 10px;
+  width: 30%;
+  padding: 16px;
+  min-height: 400px;
+  margin: 8px;
+  background-color: #d6ffdc;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.plan__title {
+  color: #0e4f1f;
+}
+
+.plan__price {
+  color: #ccc;
+}
+
+.plan > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.plan > ul > li {
+  margin: 8px 0;
+}
+
+.plan--highlighted {
+  background-color: #19b84c;
+  color: white;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.plan--highlighted .plan__title {
+  color: white;
+}
+
+.plan--highlighted .plan__price {
+  color: #0e4f1f;
+}
+
+.plan__anotation {
+  background-color: white;
+  color: #19b84c;
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.button {
+  padding: 8px;
+  background-color: #0e5f1f;
+  color: white;
+  /* 상속받은 값을 그대로 사용 */
+  font: inherit;
+  font-weight: bold;
+  border: 1.5px solid #0e4f1f;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+  background-color: white;
+  color: #0e4f1f;
+  transition: 0.3s;
+}
+
+.button:focus {
+  outline: none;
+}
+
+/* key-features */
+#key-features {
+  background-color: #ff1b68;
+  margin-top: 80px;
+  padding: 16px;
+}
+
+#key-features .section-title {
+  color: white;
+  margin: 32px;
+}
+
+.key-feature__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.key-feature__element {
+  display: inline-block;
+  /* vertical-align: top; */
+  width: 30%;
+}
+
+.key-feature__image {
+  background-color: #ffcede;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 2px solid #424242;
+  margin: auto;
+}
+
+.key-feature__discription {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
 }

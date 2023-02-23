@@ -85,7 +85,6 @@ body {
   background-color: black;
   color: white;
   padding: 32px;
-  margin-top: 48px;
 }
 
 .main-footer__links {
@@ -107,4 +106,27 @@ body {
 .main-footer__link a:hover,
 .main-footer__link a:active {
   color: #ccc;
+}
+
+.button {
+  padding: 8px;
+  background-color: #0e5f1f;
+  color: white;
+  /* inherit 상속받은 값을 그대로 사용 */
+  font: inherit;
+  font-weight: bold;
+  border: 1.5px solid #0e4f1f;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+  background-color: white;
+  color: #0e4f1f;
+  transition: 0.3s;
+}
+
+.button:focus {
+  outline: none;
 }

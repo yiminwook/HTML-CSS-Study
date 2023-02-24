@@ -1,6 +1,8 @@
 /* main */
 #product-overview {
-  background: url("./public/freedom.jpg") 0% 80% / cover no-repeat border-box;
+  /* 단색 배경은 하나 이미지는 여러개를 쌓을 수 있다. */
+  background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
+    url("./public/freedom.jpg") 0% 80% / cover no-repeat border-box, #ff1b68;
   /* background-image: url("./public/freedom.jpg");
   background-size: cover;
   background-position: 0% 80%; left 10% bottom 20%
@@ -138,6 +140,7 @@
   border-radius: 50%;
   border: 2px solid #424242;
   margin: auto;
+  padding: 20px;
 }
 
 .key-feature__discription {

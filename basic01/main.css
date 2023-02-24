@@ -1,14 +1,26 @@
 /* main */
 #product-overview {
+  background: url("./public/freedom.jpg") 0% 80% / cover no-repeat border-box;
+  /* background-image: url("./public/freedom.jpg");
+  background-size: cover;
+  background-position: 0% 80%; left 10% bottom 20%
+  background-origin: border-box;
+  background-clip: border-box;
+  background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
   width: 100%;
   padding: 10px;
   height: 528px;
-  background: url("./public/freedom.jpg");
+  position: relative;
 }
 
 #product-overview h1 {
   color: white;
   font-family: "Anton", "sans-serif";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 5%;
 }
 
 .section-title {
@@ -17,20 +29,24 @@
 }
 
 /* plan */
-.plan-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+.plan__container {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  text-align: center;
 }
 
 .plan {
+  display: inline-block;
+  vertical-align: bottom;
   width: 30%;
-  min-width: 200px;
+  min-width: 270px;
   padding: 0 16px;
   min-height: 400px;
-  margin: 8px;
+  margin: 30px 8px;
   background-color: #d6ffdc;
+  /* relative에서 위치를 조정하면 자기자신을 기준으로 이동한다. */
   position: relative;
   text-align: center;
 }
@@ -73,10 +89,13 @@
   padding: 8px;
   border-radius: 8px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+  /* absoulte의 위치를 조정하면 가장 가까운 조상의 position을 기준으로 이동한다. */
   position: absolute;
   top: -50px;
-  left: 40px;
-  right: 40px;
+  left: 10%;
+  right: 10%;
+  font-size: medium;
+  overflow: hidden;
 }
 
 .plan button {

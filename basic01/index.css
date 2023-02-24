@@ -12,11 +12,16 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  margin: 0;
+  margin: 30px 0 0 0;
 }
 
 /* header */
 .main-header {
+  position: fixed;
+  /* z-index가 같을때는 HTML 순서대로 쌓인다. */
+  z-index: 100;
+  top: 0;
+  left: 0;
   width: 100%;
   background-color: #2ddf5c;
   padding: 8px 16px;
@@ -32,6 +37,14 @@ body {
   text-decoration: none;
   font-weight: bold;
   font-size: 22px;
+  /* a태그가 인라인요소 */
+  display: inline-block;
+  width: 22px;
+}
+
+.main-header img {
+  width: 100%;
+  vertical-align: middle;
 }
 
 .main-nav {

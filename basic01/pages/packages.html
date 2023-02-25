@@ -12,12 +12,18 @@
     />
     <link rel="stylesheet" href="./packages.css" />
     <link rel="stylesheet" href="../index.css" />
+    <script src="../index.js" defer></script>
   </head>
   <body>
     <div class="backdrop"></div>
     <div class="package__background"></div>
     <header class="main-header">
       <div>
+        <button class="toggle-button">
+          <span class="toggle-button__bar"></span>
+          <span class="toggle-button__bar"></span>
+          <span class="toggle-button__bar"></span>
+        </button>
         <a href="../index.html" class="main-header__brand">
           <img
             src="../public/uhost-icon.png"
@@ -34,11 +40,25 @@
             <a href="./custormers.html">Customers</a>
           </li>
           <li class="main-nav__item main-nav__item--cta">
-            <a href="start-hosting/index.html">Start Hosting</a>
+            <a href="./start-hosting.html">Start Hosting</a>
           </li>
         </ul>
       </nav>
     </header>
+    <!-- mobile nav -->
+    <nav class="mobile-nav">
+      <ul class="mobile-nav__items">
+        <li class="mobile-nav__item">
+          <a href="./pages/packages.html">Packages</a>
+        </li>
+        <li class="mobile-nav__item">
+          <a href="./pages/custormers.html">Customers</a>
+        </li>
+        <li class="mobile-nav__item mobile-nav__item--cta">
+          <a href="./pages/start-hosting.html">Start Hosting</a>
+        </li>
+      </ul>
+    </nav>
     <main class="package-main">
       <section class="package-plan" id="plus">
         <a href="#">

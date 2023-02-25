@@ -14,6 +14,12 @@ const modalButtonNegative = (
   ) as HTMLCollectionOf<HTMLButtonElement>
 ).item(0)!;
 
+const mobileNavButton = document.querySelector(
+  ".toggle-button"
+)! as HTMLButtonElement;
+
+const mobileNav = document.querySelector(".mobile-nav") as HTMLElement;
+
 selectPlanButtons.forEach((selectPlanButton) => {
   selectPlanButton.addEventListener("click", () => {
     // 인라인 스타일이 기존 css를 덮어씌운다.
@@ -22,10 +28,19 @@ selectPlanButtons.forEach((selectPlanButton) => {
   });
 });
 
-function modalClose() {
+function closeModal() {
   modal.style.display = "none";
   backdrop.style.display = "none";
 }
 
-backdrop.addEventListener("click", modalClose);
-modalButtonNegative.addEventListener("click", modalClose);
+backdrop.addEventListener("click", () => {
+  mobileNav.style.display = "none";
+  closeModal();
+});
+
+modalButtonNegative.addEventListener("click", closeModal);
+
+mobileNavButton.addEventListener("click", () => {
+  mobileNav.style.display = "block";
+  backdrop.style.display = "block";
+});

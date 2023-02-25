@@ -2,7 +2,7 @@
 #product-overview {
   /* 단색 배경은 하나 이미지는 여러개를 쌓을 수 있다. */
   background: linear-gradient(to top, rgba(80, 68, 18, 0.6) 10%, transparent),
-    url("./public/freedom.jpg") 0% 80% / cover no-repeat border-box, #ff1b68;
+    url("./public/freedom.jpg") 10% 30% / cover no-repeat border-box, #ff1b68;
   /* background-image: url("./public/freedom.jpg");
   background-size: cover;
   background-position: 0% 80%; left 10% bottom 20%
@@ -10,15 +10,16 @@
   background-clip: border-box;
   background-repeat: no-repeat; */
   /* background-attachment: fixed; */
-  width: 100%;
-  padding: 10px;
-  height: 528px;
+  width: 100vw;
+  height: 33vh;
   position: relative;
 }
 
 #product-overview h1 {
   color: white;
   font-family: "Anton", "sans-serif";
+  /* static, relative의 100% width는 부모요소의 content값 */
+  /* absolute의 100% width는 부모요소(relative)의 padding + content값 */
   position: absolute;
   left: 0;
   bottom: 0;
@@ -32,7 +33,7 @@
 
 /* plan */
 .plan__container {
-  margin-top: 40px;
+  margin-top: 2.5rem;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -42,11 +43,11 @@
 .plan {
   display: inline-block;
   vertical-align: bottom;
-  width: 30%;
-  min-width: 270px;
-  padding: 0 16px;
-  min-height: 400px;
-  margin: 30px 8px;
+  width: 25%;
+  min-width: 14rem;
+  padding: 0 1rem;
+  min-height: 25rem;
+  margin: 2rem 0.5rem;
   background-color: #d6ffdc;
   /* relative에서 위치를 조정하면 자기자신을 기준으로 이동한다. */
   position: relative;
@@ -68,7 +69,7 @@
 }
 
 .plan > ul > li {
-  margin: 8px 0;
+  margin: 0.5rem 0;
 }
 
 .plan--highlighted {
@@ -88,12 +89,12 @@
 .plan__anotation {
   background-color: white;
   color: #19b84c;
-  padding: 8px;
-  border-radius: 8px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
   /* absoulte의 위치를 조정하면 가장 가까운 조상의 position을 기준으로 이동한다. */
   position: absolute;
-  top: -50px;
+  top: -3rem;
   left: 10%;
   right: 10%;
   font-size: medium;
@@ -102,22 +103,22 @@
 
 .plan button {
   position: absolute;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
+  left: 0.6rem;
+  right: 0.6rem;
+  bottom: 0.6rem;
 }
 
 /* key */
 #key-features {
   background-color: #ff1b68;
-  margin-top: 48px;
-  margin-bottom: 48px;
-  padding: 16px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
 }
 
 #key-features .section-title {
   color: white;
-  margin: 32px;
+  margin: 2rem;
 }
 
 .key-feature__list {
@@ -140,12 +141,12 @@
   border-radius: 50%;
   border: 2px solid #424242;
   margin: auto;
-  padding: 20px;
+  padding: 1.5rem;
 }
 
 .key-feature__discription {
   text-align: center;
   font-weight: bold;
   color: white;
-  font-size: 20px;
+  font-size: 1.2rem;
 }

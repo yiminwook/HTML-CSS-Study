@@ -1,6 +1,7 @@
+/* em 이전에 상속받은 font-size의 배수 */
 .testimonial {
-  font-size: 20px;
-  margin: 48px 0;
+  font-size: 1.2em;
+  margin: 3em 0;
 }
 
 #customer-2.testimonial {
@@ -14,12 +15,12 @@
 
 /* 첫번째 형제요소를 선택 */
 .testimonial:first-of-type {
-  margin-top: 96px;
+  margin-top: 6rem;
 }
 
 .testimonial__info {
   text-align: right;
-  padding: 14px;
+  padding: 0.9rem;
   display: inline-block;
   vertical-align: middle;
   width: 30%;
@@ -30,13 +31,15 @@
 }
 
 .testimonial__name {
-  margin: 3px;
+  margin: 0.2rem;
   color: #ff5454;
+  font-size: 2em;
 }
 
+/* rem root em 브라우저 초기설정값의 배수 */
 .testimonial__subtitle {
   margin: 0;
-  font-size: 18px;
+  font-size: 1.1rem;
   color: #ccc;
 }
 
@@ -51,11 +54,12 @@
 }
 
 .testimonial__text {
-  margin: 3px;
+  margin: 0.2rem;
 }
 
 .testimonial__image-container {
   width: 65%;
+  max-width: 580px;
   display: inline-block;
   vertical-align: middle;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);

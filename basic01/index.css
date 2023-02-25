@@ -12,7 +12,19 @@
 
 body {
   font-family: "Montserrat", sans-serif;
-  margin: 30px 0 0 0;
+  margin: 2rem 0 0 0;
+}
+
+.backdrop {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  /* vmin view port width와 height중 낮은 값을 기준으로 잡는다.*/
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* header */
@@ -24,7 +36,7 @@ body {
   left: 0;
   width: 100%;
   background-color: #2ddf5c;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
 }
 
 .main-header > div {
@@ -36,10 +48,10 @@ body {
   color: #0e4f1f;
   text-decoration: none;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 1.3rem;
   /* a태그가 인라인요소 */
   display: inline-block;
-  width: 22px;
+  width: 1.3rem;
 }
 
 .main-header img {
@@ -63,14 +75,14 @@ body {
 
 .main-nav__item {
   display: inline-block;
-  margin: 0 16px;
+  margin: 0 1rem;
 }
 
 .main-nav__item > a {
   text-decoration: none;
   color: #0e4f1f;
   font-weight: bold;
-  padding: 4px 0;
+  padding: 0.25rem 0;
 }
 
 .main-nav__item > a:hover,
@@ -83,7 +95,7 @@ body {
 .main-nav__item--cta a {
   color: white;
   background-color: #ff1b68;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   border-radius: 8px;
 }
 .main-nav__item--cta a:hover,
@@ -97,7 +109,7 @@ body {
 .main-footer {
   background-color: black;
   color: white;
-  padding: 32px;
+  padding: 2rem;
 }
 
 .main-footer__links {
@@ -109,7 +121,7 @@ body {
 
 .main-footer__link {
   display: inline-block;
-  margin: 0 16px;
+  margin: 0 1rem;
 }
 
 .main-footer__link a {

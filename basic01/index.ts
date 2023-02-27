@@ -71,3 +71,8 @@ if (mobileNavButton) {
     }
   });
 }
+
+const form = document.querySelector(".signup-form") as HTMLFormElement;
+if (form) {
+  form.addEventListener("click", (e) => {});
+}

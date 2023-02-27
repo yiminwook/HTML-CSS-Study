@@ -1,29 +1,20 @@
+main {
+  padding-top: 2.5rem;
+}
+
 /* em 이전에 상속받은 font-size의 배수 */
 .testimonial {
   font-size: 1.2em;
-  margin: 3em 0;
 }
 
 #customer-2.testimonial {
   text-align: right;
 }
 
-/* .testimonial__list {
-  width: 80%;
-  margin: auto;
-} */
-
 /* 첫번째 형제요소를 선택 */
-.testimonial:first-of-type {
-  margin-top: 6rem;
-}
-
 .testimonial__info {
   text-align: right;
   padding: 0.9rem;
-  display: inline-block;
-  vertical-align: middle;
-  width: 30%;
 }
 
 #customer-2 .testimonial__info {
@@ -58,10 +49,8 @@
 }
 
 .testimonial__image-container {
-  width: 65%;
-  max-width: 580px;
-  display: inline-block;
-  vertical-align: middle;
+  width: 100%;
+  max-width: 40rem;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -72,4 +61,23 @@
   /* display: block; */
   vertical-align: middle;
   object-fit: cover;
+}
+
+@media (min-width: 40rem) {
+  .testimonial {
+    max-width: 1500px;
+    margin: 3em auto;
+  }
+
+  .testimonial__info {
+    display: inline-block;
+    vertical-align: middle;
+    width: 30%;
+  }
+
+  .testimonial__image-container {
+    display: inline-block;
+    vertical-align: middle;
+    width: 66%;
+  }
 }

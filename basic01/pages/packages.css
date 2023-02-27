@@ -3,6 +3,8 @@
   filter: grayscale(40%);
   width: 100vw;
   height: 100vh;
+  top: 0;
+  left: 0;
   position: fixed;
   z-index: -1;
 }
@@ -78,7 +80,7 @@
 
 #free:hover,
 #free:active {
-  border-left-color: #ff5454;
+  border-color: #ff5454;
 }
 
 #preminum {
@@ -91,4 +93,22 @@
 
 #preminum .package-plan__subtitle {
   color: #bbb;
+}
+
+@media (min-width: 40rem) {
+  main {
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1500px) {
+  .package-plan {
+    border-left: 4px solid #0e4f1f;
+  }
+
+  #free {
+    border-right: 4px solid #0e4f1f;
+  }
 }

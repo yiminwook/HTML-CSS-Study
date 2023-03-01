@@ -56,28 +56,25 @@ main {
 
 .testimonial__image {
   width: 100%;
-  height: 100%;
   /* 인라인 요소의 여백을 제거하는데 필요 */
+  vertical-align: top;
   /* display: block; */
-  vertical-align: middle;
-  object-fit: cover;
 }
 
 @media (min-width: 40rem) {
   .testimonial {
     max-width: 1500px;
     margin: 3em auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
   .testimonial__info {
-    display: inline-block;
-    vertical-align: middle;
     width: 30%;
   }
 
   .testimonial__image-container {
-    display: inline-block;
-    vertical-align: middle;
-    width: 66%;
+    width: 70%;
   }
 }

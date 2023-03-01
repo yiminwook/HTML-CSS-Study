@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 
 /* css reset */
 * {
@@ -9,10 +10,21 @@
   /* width에 padding과 boarder를 포함해서 적용 총 너비 528px */
   box-sizing: border-box;
 }
+html {
+  height: 100%;
+}
 
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
+  display: grid;
+  height: 100%;
+  /* 필요한 공간만큼 늘어난다. */
+  grid-template-rows: 3.5rem auto fit-content(8rem);
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
 }
 
 .backdrop {
@@ -28,8 +40,7 @@ body {
 }
 
 main {
-  min-height: calc(100vh - 7.68rem);
-  margin-top: 2.5rem;
+  grid-area: main;
 }
 
 /* header */
@@ -42,11 +53,9 @@ main {
   width: 100%;
   background-color: #2ddf5c;
   padding: 0.5rem 1rem;
-}
-
-.main-header > div {
-  display: inline-block;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .toggle-button {
@@ -77,18 +86,16 @@ main {
   }
 }
 
+/* a태그는 인라인요소 */
 .main-header__brand {
   color: #0e4f1f;
   text-decoration: none;
   font-weight: bold;
-  /* a태그가 인라인요소 */
-  display: inline-block;
-  height: 2.5rem;
-  vertical-align: middle;
 }
 
 .main-header__brand img {
-  height: 100%;
+  height: 2.5rem;
+  vertical-align: middle;
 }
 
 .main-nav {
@@ -100,10 +107,10 @@ main {
   padding: 0;
   /* 글머리 기호제거 */
   list-style: none;
+  display: flex;
 }
 
 .main-nav__item {
-  display: inline-block;
   margin: 0 1rem;
 }
 
@@ -144,15 +151,7 @@ main {
   }
 
   .main-nav {
-    display: inline-block;
-    width: calc(100% - 2rem);
-    text-align: right;
-    vertical-align: middle;
-  }
-
-  .main-footer__link {
-    display: inline-block;
-    margin: 0 1rem;
+    display: flex;
   }
 }
 
@@ -161,18 +160,20 @@ main {
   background-color: black;
   color: white;
   padding: 2rem;
+  grid-area: footer;
 }
 
 .main-footer__links {
   margin: 0;
   padding: 0;
-  text-align: center;
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main-footer__link {
-  display: block;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .main-footer__link a {
@@ -185,9 +186,12 @@ main {
 }
 
 @media (min-width: 40rem) {
+  .main-footer__links {
+    flex-direction: row;
+    justify-content: center;
+  }
   .main-footer__link {
-    display: inline-block;
-    margin: 0 1rem;
+    margin: 0 0.5rem;
   }
 }
 
@@ -208,9 +212,12 @@ main {
   width: 90%;
   height: 100%;
   list-style: none;
-  margin: 10% auto;
+  margin: 0 auto;
   padding: 0;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .mobile-nav__item {

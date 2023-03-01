@@ -101,6 +101,9 @@
   /* relative에서 위치를 조정하면 자기자신을 기준으로 이동한다. */
   position: relative;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .plan__title {
@@ -142,38 +145,32 @@
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
   /* absoulte의 위치를 조정하면 가장 가까운 조상의 position을 기준으로 이동한다. */
   position: absolute;
-  top: -3rem;
+  top: -2rem;
   left: 10%;
   right: 10%;
   font-size: medium;
   overflow: hidden;
 }
 
-.plan button {
-  position: absolute;
-  left: 0.6rem;
-  right: 0.6rem;
-  bottom: 0.6rem;
-}
-
 @media (min-width: 40rem) {
   .plan__container {
     width: 100%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .plan {
-    display: inline-block;
     width: 30%;
     min-width: 12rem;
     max-width: 20rem;
-    vertical-align: bottom;
-    margin-left: auto;
-    margin-right: auto;
+    height: 26rem;
   }
 
   .plan--highlighted {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.5);
+    height: 28rem;
+    z-index: 1;
   }
 }
 
@@ -194,7 +191,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 .key-feature__element {
@@ -219,9 +215,12 @@
 }
 
 @media (min-width: 40rem) {
+  .key-feature__list {
+    display: flex;
+    justify-content: center;
+  }
+
   .key-feature__element {
-    display: inline-block;
-    vertical-align: top;
     width: 30%;
     min-width: 12rem;
     max-width: 20rem;

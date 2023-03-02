@@ -28,8 +28,10 @@ body {
 }
 
 .backdrop {
-  position: fixed;
   display: none;
+  position: fixed;
+  opacity: 0;
+  transition: opacity 0.5s linear;
   top: 0;
   left: 0;
   z-index: 200;
@@ -129,6 +131,10 @@ main {
   border-bottom: 5px solid white;
 }
 
+.main-nav__item--cta {
+  animation: wiggle 0.4s 0s 8 alternate none;
+}
+
 .main-nav__item--cta a,
 .mobile-nav__item--cta a {
   color: white;
@@ -143,6 +149,21 @@ main {
   color: #ff1b68;
   background-color: white;
   border: none;
+}
+
+/* 애니메이션 */
+@keyframes wiggle {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  50% {
+    transform: rotateZ(-10deg);
+  }
+
+  100% {
+    transform: rotateZ(10deg);
+  }
 }
 
 @media (min-width: 40rem) {
@@ -200,12 +221,13 @@ main {
   display: none;
   position: fixed;
   z-index: 300;
+  transform: translateX(-100%);
+  transition: transform 500ms ease-out;
   top: 0;
   left: 0;
   background: white;
   width: 80%;
   height: 100vh;
-  transition: 0.5s;
 }
 
 .mobile-nav__items {
@@ -259,5 +281,6 @@ main {
 }
 
 .open {
-  display: block !important;
+  opacity: 1 !important;
+  transform: translateX(0) translateY(0) !important;
 }

@@ -2,6 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap");
 
+:root {
+  --dark-green: #0e4f1f;
+  --hight-color: #ff1b68;
+}
+
 /* css reset */
 * {
   /* width: 528px; 일때 */
@@ -17,14 +22,22 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   margin: 0;
-  display: grid;
-  height: 100%;
-  /* 필요한 공간만큼 늘어난다. */
-  grid-template-rows: 3.5rem auto fit-content(8rem);
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+  padding-top: 3.5rem;
+}
+
+/* 지원쿼리 */
+@supports (display: grid) {
+  body {
+    padding-top: 0;
+    display: grid;
+    height: 100%;
+    /* 필요한 공간만큼 늘어난다. */
+    grid-template-rows: 3.5rem auto fit-content(8rem);
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+  }
 }
 
 .backdrop {
@@ -90,7 +103,7 @@ main {
 
 /* a태그는 인라인요소 */
 .main-header__brand {
-  color: #0e4f1f;
+  color: var(--dark-green);
   text-decoration: none;
   font-weight: bold;
 }
@@ -119,7 +132,7 @@ main {
 .main-nav__item a,
 .mobile-nav__item a {
   text-decoration: none;
-  color: #0e4f1f;
+  color: var(--dark-green);
   font-weight: bold;
   padding: 0.2rem 0;
 }
@@ -138,7 +151,7 @@ main {
 .main-nav__item--cta a,
 .mobile-nav__item--cta a {
   color: white;
-  background-color: #ff1b68;
+  background-color: var(--hight-color);
   padding: 0.5rem 1rem;
   border-radius: 8px;
 }
@@ -146,7 +159,7 @@ main {
 .main-nav__item--cta a:active,
 .mobile-nav__item--cta a:hover,
 .mobile-nav__item--cta a:active {
-  color: #ff1b68;
+  color: var(--hight-color);
   background-color: white;
   border: none;
 }
@@ -252,12 +265,12 @@ main {
 
 .button {
   padding: 8px;
-  background-color: #0e5f1f;
+  background-color: var(--dark-green, #0e4f1f);
   color: white;
   /* inherit 상속받은 값을 그대로 사용 */
   font: inherit;
   font-weight: bold;
-  border: 1.5px solid #0e4f1f;
+  border: 1.5px solid var(--dark-green);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -265,7 +278,7 @@ main {
 .button:hover,
 .button:active {
   background-color: white;
-  color: #0e4f1f;
+  color: var(--dark-green);
   transition: 0.3s;
 }
 

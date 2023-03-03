@@ -53,7 +53,7 @@ main {
 
 .signup-form input[type="checkbox"]:checked {
   background-color: #2ddf5c;
-  border: #0e4f1f;
+  border: var(--dark-green);
 }
 
 .signup-form button[type="submit"] {

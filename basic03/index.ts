@@ -70,16 +70,7 @@ const resetVars = () => {
 };
 
 window.addEventListener("keydown", (e) => {
-  const curr = currentShape.getState();
-  if (e.keyCode === 37) {
-    curr.moveLeft();
-  } else if (e.keyCode === 38) {
-    curr.changeRotation();
-  } else if (e.keyCode === 39) {
-    curr.moveRight();
-  } else if (e.keyCode === 40) {
-    curr.moveBottom();
-  }
+  currentShape.dispatch({ type: "CONTROL", keyCode: e.keyCode });
 });
 
 resetVars();

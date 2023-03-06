@@ -5,7 +5,10 @@ import { squareCountX, squareCountY } from "./global";
 import { currentShape, nextShape } from "./store";
 
 export const getRandomShape = (): Tetris => {
-  return new Tetris(...shapes[Math.floor(Math.random() * shapes.length)]);
+  const [imageX, imageY, tempTemplate] =
+    shapes[Math.floor(Math.random() * shapes.length)];
+  const copiedTemplate = tempTemplate.slice().map((arr) => arr.slice());
+  return new Tetris(imageX, imageY, copiedTemplate);
 };
 
 export type gameMapState = { imageX: number; imageY: number }[][];
@@ -107,7 +110,7 @@ export const scoreReducer: Reducer<number, Action> = (
 
 export const currentShapeReducer: Reducer<Tetris, Action> = (
   state: Tetris = getRandomShape(),
-  action: Action
+  action: Action & { keyCode?: number }
 ) => {
   let newShape = state;
   switch (action.type) {
@@ -117,6 +120,21 @@ export const currentShapeReducer: Reducer<Tetris, Action> = (
       return (newShape = nextShape.getState());
     case "MOVE":
       newShape.y += 1;
+      return newShape;
+
+    case "CONTROL":
+      if (action.keyCode) {
+        const keyCode = action.keyCode;
+        if (keyCode === 37) {
+          newShape.moveLeft();
+        } else if (keyCode === 38) {
+          newShape.changeRotation();
+        } else if (keyCode === 39) {
+          newShape.moveRight();
+        } else if (keyCode === 40) {
+          newShape.moveBottom();
+        }
+      }
       return newShape;
     default:
       return newShape;

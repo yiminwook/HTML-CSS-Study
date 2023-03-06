@@ -10,12 +10,15 @@
   <body>
     <div id="app">
       <div class="background"></div>
+      <img id="image" src="public/rotations.png" style="display: none" />
       <h1>Play Tetris!</h1>
       <main>
         <canvas id="canvas" width="400" height="800"></canvas>
         <canvas id="canvas-next_shape" width="200" height="200"></canvas>
         <canvas id="canvas-score" width="200" height="200"></canvas>
-        <img id="image" src="public/rotations.png" style="display: none" />
+        <button id="button-reset">
+          <img src="./public/refresh.svg" alt="refresh" />
+        </button>
       </main>
       <footer>
         <h2>source code by <a id="footer-url">servetgulnaroglu</a></h2>

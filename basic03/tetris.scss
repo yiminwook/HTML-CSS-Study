@@ -1,5 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Genos:ital,wght@0,400;0,500;0,700;1,700&display=swap");
 
+@mixin keyframe($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+// button keyframe
+@include keyframe(button) {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@mixin animation($keyframe-name, $duration, $delay, $count: infinite) {
+  animation-name: $keyframe-name;
+  animation-duration: $duration;
+  animation-delay: $delay;
+  animation-iteration-count: $count;
+  animation-timing-function: linear;
+}
+
 :root {
   --body-bg-color: linear-gradient(
     0deg,
@@ -11,7 +35,7 @@
   --main-bg-color: rgba(255, 255, 255, 0.95);
 }
 
-.init {
+%init {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -21,11 +45,11 @@
 }
 
 html {
-  @extend .init;
+  @extend %init;
 }
 
 body {
-  @extend .init;
+  @extend %init;
   margin: auto;
   display: flex;
   align-items: flex-start;
@@ -75,13 +99,46 @@ main {
   grid-column: col-start 3 / span 1;
 }
 
-#image {
-  display: none;
+#canvas-score {
+  grid-column: col-start 3 / span 1;
+  grid-row: row-start 2 / span 1;
+}
+
+#button-reset {
+  grid-column: col-start 3 / span 1;
+  grid-row: row-start 4 / span 1;
+  border: 0;
+  background-color: transparent;
+  width: 50%;
+  margin: auto;
+
+  img {
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-image: radial-gradient(
+      circle,
+      rgba(0, 0, 0, 1) 30%,
+      rgba(0, 0, 0, 0) 110%
+    );
+    @include animation(button, 1s, 0s);
+    animation-play-state: paused;
+    &:hover {
+      animation-play-state: running !important;
+    }
+    &:active {
+      cursor: pointer;
+      animation-play-state: running !important;
+      opacity: 0.5;
+      transition: opacity 0.1s;
+    }
+  }
 }
 
 footer {
   text-align: center;
+  cursor: default;
   a {
     color: rgb(160, 21, 21);
+    cursor: pointer;
   }
 }

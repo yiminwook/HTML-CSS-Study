@@ -9,16 +9,30 @@ const canvas = document.querySelector("#canvas")! as HTMLCanvasElement;
 const nextShapeCanvas = document.querySelector(
   "#canvas-next_shape"
 )! as HTMLCanvasElement;
+const scoreCanvas = document.querySelector(
+  "#canvas-score"
+)! as HTMLCanvasElement;
 const image = document.querySelector("#image")! as HTMLImageElement;
-/** canvas 2D Context */
+/** main canvas 2D Context */
 const ctx = canvas.getContext("2d");
+/** next shape canvas 2D Context */
 const nctx = nextShapeCanvas.getContext("2d");
+/** score canvas 2D Context */
+const sctx = scoreCanvas.getContext("2d");
 /** canvas.width / size = 10 */
 const squareCountX = canvas.width / size;
 /** canvas.height / size = 20 */
 const squareCountY = canvas.height / size;
 /** 경계선 너비 */
 const whiteLineThickness = 4;
+
+const resetButton = document.querySelector(
+  "#button-reset"
+)! as HTMLButtonElement;
+
+resetButton.addEventListener("click", () => {
+  resetVars();
+});
 
 const footerUrl = document.querySelector("#footer-url")! as HTMLAnchorElement;
 footerUrl.addEventListener("click", (e) => {
@@ -107,16 +121,20 @@ class Tetris {
       this.x += 1;
     }
   }
+
   moveLeft() {
     if (this.checkLeft()) {
       this.x -= 1;
     }
   }
+
   moveBottom() {
     if (this.checkBottom()) {
       this.y += 1;
+      score += 1;
     }
   }
+
   changeRotation() {
     let tempTemplate: template = [];
     //배열을 복사
@@ -131,6 +149,7 @@ class Tetris {
       let last = n - layer - 1;
       for (let i = first; i < last; i++) {
         let offset = i - first;
+        console.log(first, last, offset);
         let top = this.template[first][i];
         this.template[first][i] = this.template[i][last]; //top = right
         this.template[i][last] = this.template[last][last - offset]; //right = bottom
@@ -203,15 +222,15 @@ let gameMap: { imageX: number; imageY: number }[][];
 let gameOver: boolean = false;
 let currentShape: Tetris;
 let nextShape: Tetris;
-let score: number;
+let score: number = 0;
 let initialTwoDArr: { imageX: number; imageY: number }[][] = [];
 
-let gameLoop = () => {
+const gameLoop = () => {
   setInterval(update, 1000 / gameSpeed);
   setInterval(draw, 1000 / framePerSecond);
 };
 
-let deleteCompleteRows = () => {
+const deleteCompleteRows = () => {
   for (let i = 0; i < gameMap.length; i++) {
     let t = gameMap[i];
     let isComplete = true;
@@ -223,7 +242,7 @@ let deleteCompleteRows = () => {
     }
     // 한줄을 다 돌고 isComplete가 true로 남아 있을 때
     if (isComplete) {
-      console.log("complete row");
+      score += 1000;
       for (let k = i; k > 0; k--) {
         gameMap[k] = gameMap[k - 1];
       }
@@ -232,12 +251,11 @@ let deleteCompleteRows = () => {
         temp.push({ imageX: -1, imageY: -1 });
       }
       gameMap[0] = temp;
-      isComplete = false;
     }
   }
 };
 
-let update = () => {
+const update = () => {
   if (gameOver) return;
   if (currentShape.checkBottom()) {
     currentShape.y += 1;
@@ -256,11 +274,11 @@ let update = () => {
     if (!currentShape.checkBottom()) {
       gameOver = true;
     }
-    score += 10;
+    score += 100;
   }
 };
 
-let drawRect = (
+const drawRect = (
   x: number,
   y: number,
   width: number,
@@ -273,7 +291,7 @@ let drawRect = (
   }
 };
 
-let drawBackground = () => {
+const drawBackground = () => {
   //뒷배경
   drawRect(0, 0, canvas.width, canvas.height, mainColor);
   //경계선
@@ -298,7 +316,7 @@ let drawBackground = () => {
   }
 };
 
-let drawCurrentTetris = () => {
+const drawCurrentTetris = () => {
   for (let i = 0; i < currentShape.template.length; i++) {
     for (let j = 0; j < currentShape.template.length; j++) {
       if (currentShape.template[i][j] === 0) continue;
@@ -318,7 +336,8 @@ let drawCurrentTetris = () => {
     }
   }
 };
-let drawSquares = () => {
+
+const drawSquares = () => {
   for (let i = 0; i < gameMap.length; i++) {
     let t = gameMap[i];
     for (let j = 0; j < t.length; j++) {
@@ -340,7 +359,7 @@ let drawSquares = () => {
   }
 };
 
-let drawNextShape = () => {
+const drawNextShape = () => {
   if (nctx) {
     nctx.fillStyle = mainColor;
     nctx.fillRect(0, 0, nextShapeCanvas.width, nextShapeCanvas.height);
@@ -363,26 +382,44 @@ let drawNextShape = () => {
   }
 };
 
-let drawGameOver = () => {};
+const drawScore = () => {
+  if (sctx) {
+    sctx.clearRect(0, 0, scoreCanvas.width, scoreCanvas.height);
+    sctx.font = "64px Poppins";
+    sctx.fillStyle = "black";
+    let scoreToString = score.toString();
+    let scoreX = 125 - scoreToString.length * 25;
+    sctx.fillText(scoreToString, scoreX, 125);
+  }
+};
 
-let draw = () => {
+const drawGameOver = () => {
+  if (ctx) {
+    ctx.font = "64px Poppins";
+    ctx.fillStyle = "black";
+    ctx.fillText("Game Over!", 10, canvas.height / 2);
+  }
+};
+
+const draw = () => {
   if (ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBackground();
     drawSquares();
     drawCurrentTetris();
     drawNextShape();
+    drawScore();
     if (gameOver) {
       drawGameOver();
     }
   }
 };
 
-let getRandomShape = (): Tetris => {
+const getRandomShape = (): Tetris => {
   return Object.create(shapes[Math.floor(Math.random() * shapes.length)]);
 };
 
-let resetVars = () => {
+const resetVars = () => {
   initialTwoDArr = [];
   for (let i = 0; i < squareCountY; i++) {
     let temp: { imageX: number; imageY: number }[] = [];

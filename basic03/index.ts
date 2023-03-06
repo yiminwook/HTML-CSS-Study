@@ -1,8 +1,6 @@
 import {
   gameSpeed,
   framePerSecond,
-  squareCountX,
-  squareCountY,
   resetButton,
   footerUrl,
 } from "./components/global";
@@ -15,7 +13,6 @@ import store, {
   score,
 } from "./components/store";
 import { draw } from "./components/draw";
-import { gameMapState } from "./components/reducer";
 
 resetButton.addEventListener("click", () => {
   resetVars();
@@ -43,37 +40,20 @@ const deleteCompleteRows = () => {
     // 한줄을 다 돌고 isComplete가 true로 남아 있을 때
     if (isComplete) {
       score.dispatch({ type: "DELROW" });
-      for (let k = i; k > 0; k--) {
-        gameMap.getState()[k] = gameMap.getState()[k - 1];
-      }
-      let temp: { imageX: -1; imageY: -1 }[] = [];
-      for (let j = 0; j < squareCountX; j++) {
-        temp.push({ imageX: -1, imageY: -1 });
-      }
-      gameMap.getState()[0] = temp;
+      gameMap.dispatch({ type: "DELROW", index: i });
     }
   }
 };
 
-const update = () => {
+const update = async () => {
   if (gameOver.getState()) return;
   if (currentShape.getState().checkBottom()) {
-    currentShape.getState().y += 1;
+    currentShape.dispatch({ type: "MOVE" });
   } else {
-    for (let k = 0; k < currentShape.getState().template.length; k++) {
-      for (let l = 0; l < currentShape.getState().template.length; l++) {
-        if (currentShape.getState().template[k][l] === 0) continue;
-        gameMap.getState()[currentShape.getState().getTruncedPosition().y + l][
-          currentShape.getState().getTruncedPosition().x + k
-        ] = {
-          imageX: currentShape.getState().imageX,
-          imageY: currentShape.getState().imageY,
-        };
-      }
-    }
+    gameMap.dispatch({ type: "UPDATE" });
     deleteCompleteRows();
     currentShape.dispatch({ type: "UPDATE" });
-    nextShape.dispatch({ type: "UPDATE" });
+    nextShape.dispatch({ type: "REFRESH" });
     if (!currentShape.getState().checkBottom()) {
       gameOver.dispatch({ type: "GAMEOVER" });
     }
@@ -82,30 +62,23 @@ const update = () => {
 };
 
 const resetVars = () => {
-  let initialTwoDArr: gameMapState = [];
-  for (let i = 0; i < squareCountY; i++) {
-    let temp: { imageX: number; imageY: number }[] = [];
-    for (let j = 0; j < squareCountX; j++) {
-      temp.push({ imageX: -1, imageY: -1 });
-    }
-    initialTwoDArr.push(temp);
-  }
   gameOver.dispatch({ type: "RESET" });
   score.dispatch({ type: "RESET" });
-  currentShape.dispatch({ type: "UPDATE" });
-  nextShape.dispatch({ type: "UPDATE" });
-  store.gameMap.dispatch({ type: "RESET", map: initialTwoDArr });
+  currentShape.dispatch({ type: "RESET" });
+  nextShape.dispatch({ type: "REFRESH" });
+  store.gameMap.dispatch({ type: "RESET" });
 };
 
 window.addEventListener("keydown", (e) => {
+  const curr = currentShape.getState();
   if (e.keyCode === 37) {
-    currentShape.getState().moveLeft();
+    curr.moveLeft();
   } else if (e.keyCode === 38) {
-    currentShape.getState().changeRotation();
+    curr.changeRotation();
   } else if (e.keyCode === 39) {
-    currentShape.getState().moveRight();
+    curr.moveRight();
   } else if (e.keyCode === 40) {
-    currentShape.getState().moveBottom();
+    curr.moveBottom();
   }
 });
 

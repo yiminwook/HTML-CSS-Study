@@ -54,18 +54,20 @@ export const drawBackground = () => {
 };
 
 export const drawCurrentTetris = () => {
-  for (let i = 0; i < currentShape.getState().template.length; i++) {
-    for (let j = 0; j < currentShape.getState().template.length; j++) {
-      if (currentShape.getState().template[i][j] === 0) continue;
+  const length = currentShape.getState().template.length;
+  for (let i = 0; i < length; i++) {
+    for (let j = 0; j < length; j++) {
+      const { template, imageX, imageY, x, y } = currentShape.getState();
+      if (template[i][j] === 0) continue;
       if (ctx) {
         ctx.drawImage(
           image,
-          currentShape.getState().imageX,
-          currentShape.getState().imageY,
+          imageX,
+          imageY,
           imageSquareSize,
           imageSquareSize,
-          Math.trunc(currentShape.getState().x) * size + size * i,
-          Math.trunc(currentShape.getState().y) * size + size * j,
+          x * size + size * i,
+          y * size + size * j,
           size,
           size
         );
@@ -100,13 +102,15 @@ export const drawNextShape = () => {
   if (nctx) {
     nctx.fillStyle = mainColor;
     nctx.fillRect(0, 0, nextShapeCanvas.width, nextShapeCanvas.height);
-    for (let i = 0; i < nextShape.getState().template.length; i++) {
-      for (let j = 0; j < nextShape.getState().template.length; j++) {
-        if (nextShape.getState().template[i][j] === 0) continue;
+    const length = nextShape.getState().template.length;
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        const { template, imageX, imageY } = nextShape.getState();
+        if (template[i][j] === 0) continue;
         nctx.drawImage(
           image,
-          nextShape.getState().imageX,
-          nextShape.getState().imageY,
+          imageX,
+          imageY,
           imageSquareSize,
           imageSquareSize,
           size * i,

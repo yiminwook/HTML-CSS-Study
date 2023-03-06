@@ -1,9 +1,11 @@
 import Tetris from "./tetris";
 import { Reducer } from "redux";
 import shapes from "./shape";
+import { squareCountX, squareCountY } from "./global";
+import { currentShape, nextShape } from "./store";
 
 export const getRandomShape = (): Tetris => {
-  return Object.create(shapes[Math.floor(Math.random() * shapes.length)]);
+  return new Tetris(...shapes[Math.floor(Math.random() * shapes.length)]);
 };
 
 export type gameMapState = { imageX: number; imageY: number }[][];
@@ -13,19 +15,57 @@ interface Action {
 }
 
 interface gameMapAction extends Action {
-  map: gameMapState;
+  index?: number;
 }
 
+const initMap = () => {
+  let initialTwoDArr: gameMapState = [];
+  for (let i = 0; i < squareCountY; i++) {
+    let temp: { imageX: number; imageY: number }[] = [];
+    for (let j = 0; j < squareCountX; j++) {
+      temp.push({ imageX: -1, imageY: -1 });
+    }
+    initialTwoDArr.push(temp);
+  }
+  return initialTwoDArr;
+};
+
 export const gameMapReducer: Reducer<gameMapState, gameMapAction> = (
-  state: gameMapState = [],
+  state: gameMapState = initMap(),
   action
 ) => {
-  let newState = state.slice();
+  let newState: gameMapState = state.slice().map((arr) => arr.slice());
+
   switch (action.type) {
     case "RESET":
-      return (newState = action.map);
+      return (newState = initMap());
     case "UPDATE":
-      return (newState = action.map);
+      const { template, imageX, imageY } = currentShape.getState();
+      for (let k = 0; k < template.length; k++) {
+        for (let l = 0; l < template.length; l++) {
+          const { x, y } = currentShape.getState().getTruncedPosition();
+          if (template[k][l] !== 0) {
+            newState[y + l][x + k] = {
+              imageX: imageX,
+              imageY: imageY,
+            };
+          }
+        }
+      }
+      return newState;
+    case "DELROW":
+      if (action.index) {
+        for (let k = action.index; k > 0; k--) {
+          newState[k] = newState[k - 1];
+        }
+        let temp: { imageX: -1; imageY: -1 }[] = [];
+        for (let j = 0; j < squareCountX; j++) {
+          temp.push({ imageX: -1, imageY: -1 });
+        }
+        newState[0] = temp;
+        return newState;
+      }
+      return newState;
     default:
       return newState;
   }
@@ -65,13 +105,31 @@ export const scoreReducer: Reducer<number, Action> = (
   }
 };
 
-export const shapeReducer: Reducer<Tetris, Action> = (
+export const currentShapeReducer: Reducer<Tetris, Action> = (
   state: Tetris = getRandomShape(),
   action: Action
 ) => {
   let newShape = state;
   switch (action.type) {
+    case "RESET":
+      return (newShape = getRandomShape());
     case "UPDATE":
+      return (newShape = nextShape.getState());
+    case "MOVE":
+      newShape.y += 1;
+      return newShape;
+    default:
+      return newShape;
+  }
+};
+
+export const nextShapeReducer: Reducer<Tetris, Action> = (
+  state: Tetris = getRandomShape(),
+  action: Action
+) => {
+  let newShape = state;
+  switch (action.type) {
+    case "REFRESH":
       return (newShape = getRandomShape());
     default:
       return newShape;

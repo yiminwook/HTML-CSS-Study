@@ -1,9 +1,10 @@
 import { createStore } from "redux";
 import {
+  currentShapeReducer,
   gameMapReducer,
   gameOverReducer,
+  nextShapeReducer,
   scoreReducer,
-  shapeReducer,
 } from "./reducer";
 
 export const gameMap = createStore(
@@ -11,25 +12,16 @@ export const gameMap = createStore(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export const gameOver = createStore(
-  gameOverReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const gameOver = createStore(gameOverReducer);
 
 export const score = createStore(
   scoreReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
-export const currentShape = createStore(
-  shapeReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const currentShape = createStore(currentShapeReducer);
 
-export const nextShape = createStore(
-  shapeReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const nextShape = createStore(nextShapeReducer);
 
 const store = { gameMap, gameOver, score, currentShape, nextShape };
 

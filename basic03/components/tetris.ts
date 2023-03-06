@@ -110,7 +110,6 @@ export default class Tetris {
       let last = n - layer - 1;
       for (let i = first; i < last; i++) {
         let offset = i - first;
-        console.log(first, last, offset);
         let top = this.template[first][i];
         this.template[first][i] = this.template[i][last]; //top = right
         this.template[i][last] = this.template[last][last - offset]; //right = bottom

@@ -13,7 +13,7 @@ import {
   squareCountY,
   whiteLineThickness,
 } from "./global";
-import { currentShape, gameMap, gameOver, nextShape, score } from "./state";
+import { currentShape, gameMap, gameOver, nextShape, score } from "./store";
 
 export const drawRect = (
   x: number,

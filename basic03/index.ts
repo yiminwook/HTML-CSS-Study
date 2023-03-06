@@ -13,9 +13,9 @@ import store, {
   gameOver,
   nextShape,
   score,
-} from "./components/state";
+} from "./components/store";
 import { draw } from "./components/draw";
-import { gameMapState, getRandomShape } from "./components/reducer";
+import { gameMapState } from "./components/reducer";
 
 resetButton.addEventListener("click", () => {
   resetVars();
@@ -72,8 +72,8 @@ const update = () => {
       }
     }
     deleteCompleteRows();
-    currentShape.dispatch({ type: "UPDATE", shape: nextShape.getState() });
-    nextShape.dispatch({ type: "UPDATE", shape: getRandomShape() });
+    currentShape.dispatch({ type: "UPDATE" });
+    nextShape.dispatch({ type: "UPDATE" });
     if (!currentShape.getState().checkBottom()) {
       gameOver.dispatch({ type: "GAMEOVER" });
     }
@@ -92,8 +92,8 @@ const resetVars = () => {
   }
   gameOver.dispatch({ type: "RESET" });
   score.dispatch({ type: "RESET" });
-  currentShape.dispatch({ type: "UPDATE", shape: getRandomShape() });
-  nextShape.dispatch({ type: "UPDATE", shape: getRandomShape() });
+  currentShape.dispatch({ type: "UPDATE" });
+  nextShape.dispatch({ type: "UPDATE" });
   store.gameMap.dispatch({ type: "RESET", map: initialTwoDArr });
 };
 

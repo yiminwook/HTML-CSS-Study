@@ -1,6 +1,6 @@
 import { template } from "../types/type";
 import { squareCountX, squareCountY } from "./global";
-import { gameMap, score } from "./state";
+import { gameMap, score } from "./store";
 
 export default class Tetris {
   /** rotations.img X */

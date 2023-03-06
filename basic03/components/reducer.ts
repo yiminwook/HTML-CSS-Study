@@ -1,5 +1,5 @@
 import Tetris from "./tetris";
-import { Action, Reducer } from "redux";
+import { Reducer } from "redux";
 import shapes from "./shape";
 
 export const getRandomShape = (): Tetris => {
@@ -7,8 +7,12 @@ export const getRandomShape = (): Tetris => {
 };
 
 export type gameMapState = { imageX: number; imageY: number }[][];
-interface gameMapAction {
+
+interface Action {
   type: string;
+}
+
+interface gameMapAction extends Action {
   map: gameMapState;
 }
 
@@ -27,7 +31,10 @@ export const gameMapReducer: Reducer<gameMapState, gameMapAction> = (
   }
 };
 
-export const gameOverReducer: Reducer = (state: boolean = false, action) => {
+export const gameOverReducer: Reducer<boolean, Action> = (
+  state: boolean = false,
+  action: Action
+) => {
   let newState = state;
   switch (action.type) {
     case "GAMEOVER":
@@ -39,7 +46,7 @@ export const gameOverReducer: Reducer = (state: boolean = false, action) => {
   }
 };
 
-export const scoreReducer: Reducer<number> = (
+export const scoreReducer: Reducer<number, Action> = (
   state: number = 0,
   action: Action
 ) => {
@@ -58,14 +65,14 @@ export const scoreReducer: Reducer<number> = (
   }
 };
 
-export const shapeReducer: Reducer<Tetris, { type: string; shape: Tetris }> = (
+export const shapeReducer: Reducer<Tetris, Action> = (
   state: Tetris = getRandomShape(),
-  action
+  action: Action
 ) => {
   let newShape = state;
   switch (action.type) {
     case "UPDATE":
-      return (newShape = action.shape);
+      return (newShape = getRandomShape());
     default:
       return newShape;
   }

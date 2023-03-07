@@ -1,8 +1,8 @@
 import Tetris from "./tetris";
-import { Reducer } from "redux";
 import shapes from "./shape";
 import { squareCountX, squareCountY } from "./global";
 import { currentShape, nextShape } from "./store";
+import { Reducer, Action } from "redux";
 
 export const getRandomShape = (): Tetris => {
   const [imageX, imageY, tempTemplate] =
@@ -12,10 +12,6 @@ export const getRandomShape = (): Tetris => {
 };
 
 export type gameMapState = { imageX: number; imageY: number }[][];
-
-interface Action {
-  type: string;
-}
 
 interface gameMapAction extends Action {
   index?: number;
@@ -35,7 +31,7 @@ const initMap = () => {
 
 export const gameMapReducer: Reducer<gameMapState, gameMapAction> = (
   state: gameMapState = initMap(),
-  action
+  action: gameMapAction
 ) => {
   let newState: gameMapState = state.slice().map((arr) => arr.slice());
 

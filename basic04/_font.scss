@@ -1,0 +1,41 @@
+@mixin font-face(
+  $name,
+  $path,
+  $weight: normal,
+  $style: normal,
+  $exts: ttf woff woff2 eot
+) {
+  $src: null; //초기값
+  $formats: (
+    ttf: "truetype",
+    woff: "woff",
+    woff2: "woff2",
+    eot: "embedded-opentype",
+  );
+  //for of
+  @each $ext in $exts {
+    $url: "#{$path}.#{$ext}";
+    $format: map-get($formats, $ext);
+    $src: append($src, url(quote($url)) format(quote($format)), comma);
+  }
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    src: $src;
+    font-display: swap;
+  }
+}
+
+@include font-face("SoDo Sans", "./font/SoDoSans-Thin", 100);
+@include font-face("SoDo Sans", "./font/SoDoSans-ThinItalic", 100, italic);
+@include font-face("SoDo Sans", "./font/SoDoSans-Light", 300);
+@include font-face("SoDo Sans", "./font/SoDoSans-LightItalic", 300, italic);
+@include font-face("SoDo Sans", "./font/SoDoSans-Regular");
+@include font-face("SoDo Sans", "./font/SoDoSans-Italic", normal, italic);
+@include font-face("SoDo Sans", "./font/SoDoSans-SemiBold", 600);
+@include font-face("SoDo Sans", "./font/SoDoSans-SemiBoldItalic", 600, italic);
+@include font-face("SoDo Sans", "./font/SoDoSans-Bold", 700);
+@include font-face("SoDo Sans", "./font/SoDoSans-BoldItalic", 700, italic);
+@include font-face("SoDo Sans", "./font/SoDoSans-Black", 900);
+@include font-face("SoDo Sans", "./font/SoDoSans-BlackItalic", 900, italic);

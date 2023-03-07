@@ -1,0 +1,20 @@
+@use "font";
+
+%init {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-family: "SoDo Sans", sans-serif;
+}
+
+html {
+  @extend %init;
+}
+
+body {
+  @extend %init;
+  div {
+  }
+}
